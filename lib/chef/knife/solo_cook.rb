@@ -321,7 +321,7 @@ class Chef
       def chef_version
         # Memoize the version to avoid multiple SSH calls
         @chef_version ||= lambda do
-          cmd = %q{sudo chef-solo --version 2>/dev/null | awk -F ": " '/Chef/{print $2}'}
+          cmd = %q{sudo chef-solo --version 2>/dev/null | awk -F ": " '/Chef|Cinc/{print $2}'}
           run_command(cmd).stdout.strip
         end.call
       end
